@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ES6 Student Manager</title>
+  <style>
+    body {
+      font-family: Arial;
+      background: #f4f4f4;
+      padding: 30px;
+    }
+    .box {
+      max-width: 450px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+    }
+    input, button {
+      padding: 8px;
+      margin: 5px 0;
+      width: 100%;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    li {
+      display: flex;
+      justify-content: space-between;
+      background: #eee;
+      padding: 6px;
+      margin-bottom: 5px;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="box">
+  <h2>🎓 Student Manager (ES6)</h2>
+
+  <input id="name" placeholder="Student Name">
+  <input id="marks" type="number" placeholder="Marks">
+  <button id="add">Add Student</button>
+
+  <button id="filter">Show Passed Only</button>
+
+  <ul id="list"></ul>
+
+  <h3 id="total"></h3>
+</div>
+
+<script>
+  // STATE (ES6)
+  let students = [];
+
+  // SELECT ELEMENTS
+  const nameInput = document.getElementById("name");
+  const marksInput = document.getElementById("marks");
+  const list = document.getElementById("list");
+  const totalEl = document.getElementById("total");
+
+  // ADD STUDENT (ARROW + SPREAD)
+  const addStudent = () => {
+    const name = nameInput.value;
+    const marks = Number(marksInput.value);
+
+    if (!name || !marks) return;
+
+    students = [
+      ...students,
+      { id: Date.now(), name, marks }
+    ];
+
+    render(students);
+    nameInput.value = "";
+    marksInput.value = "";
+  };
+
+  // DELETE STUDENT (FILTER)
+  const deleteStudent = id => {
+    students = students.filter(s => s.id !== id);
+    render(students);
+  };
+
+  // RENDER UI (MAP + TEMPLATE LITERAL)
+  const render = data => {
+    list.innerHTML = "";
+
+    data.map(({ id, name, marks }) => {
+      const li = document.createElement("li");
+      li.innerHTML = `
+        ${name} - ${marks}
+        <button onclick="deleteStudent(${id})">❌</button>
+      `;
+      list.appendChild(li);
+    });
+
+    // TOTAL MARKS (REDUCE)
+    const total = data.reduce((sum, s) => sum + s.marks, 0);
+    totalEl.innerText = `Total Marks: ${total}`;
+  };
+
+  // FILTER PASSED (FILTER)
+  document.getElementById("filter").addEventListener("click", () => {
+    const passed = students.filter(s => s.marks >= 40);
+    render(passed);
+  });
+
+  // ADD BUTTON
+  document.getElementById("add").addEventListener("click", addStudent);
+
+  // ASYNC / AWAIT DEMO (FAKE API)
+  const fetchDemo = async () => {
+    try {
+      const res = await fetch("https://jsonplaceholder.typicode.com/users");
+      const data = await res.json();
+      console.log(data?.[0]?.name ?? "No Data");
+    } catch (err) {
+      console.log("Error");
+    }
+  };
+
+  fetchDemo();
+</script>
+
+</body>
+</html>
