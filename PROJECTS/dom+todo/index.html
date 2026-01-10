@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>DOM Todo App</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f2f2f2;
+      padding: 40px;
+    }
+
+    .container {
+      max-width: 400px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+    }
+
+    h2 {
+      text-align: center;
+    }
+
+    form {
+      display: flex;
+      gap: 10px;
+    }
+
+    input {
+      flex: 1;
+      padding: 8px;
+    }
+
+    button {
+      padding: 8px 12px;
+      cursor: pointer;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin-top: 20px;
+    }
+
+    li {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px;
+      margin-bottom: 6px;
+      background: #eee;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .done {
+      text-decoration: line-through;
+      color: gray;
+    }
+
+    .delete {
+      background: red;
+      color: white;
+      border: none;
+      padding: 4px 8px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <h2>📝 DOM Todo List</h2>
+
+    <!-- FORM -->
+    <form id="todoForm">
+      <input id="taskInput" placeholder="Enter task">
+      <button type="submit">Add</button>
+    </form>
+
+    <!-- LIST -->
+    <ul id="todoList"></ul>
+  </div>
+
+  <script>
+    // SELECT ELEMENTS
+    let form = document.getElementById("todoForm");
+    let input = document.getElementById("taskInput");
+    let list = document.getElementById("todoList");
+
+    // FORM SUBMIT
+    form.addEventListener("submit", function (e) {
+      e.preventDefault(); // ❌ page reload stop
+
+      if (input.value === "") return;
+
+      // CREATE LI
+      let li = document.createElement("li");
+      li.innerHTML = `
+        <span>${input.value}</span>
+        <button class="delete">❌</button>
+      `;
+
+      list.appendChild(li);
+      input.value = "";
+    });
+
+    // EVENT DELEGATION
+    list.addEventListener("click", function (e) {
+
+      // MARK DONE
+      if (e.target.tagName === "SPAN") {
+        e.target.classList.toggle("done");
+      }
+
+      // DELETE TASK
+      if (e.target.classList.contains("delete")) {
+        e.target.parentElement.remove();
+      }
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,12 @@
+<input id="name">
+<button id="show">Show</button>
+<p id="output"></p>
+
+<script>
+  let input = document.getElementById("name");
+  let output = document.getElementById("output");
+
+  document.getElementById("show").addEventListener("click", function () {
+    output.innerText = input.value;
+  });
+</script>

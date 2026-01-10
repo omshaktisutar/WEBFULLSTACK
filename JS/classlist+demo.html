@@ -1,0 +1,18 @@
+<h1 id="h">Hello</h1>
+<button id="b">Toggle Style</button>
+
+<style>
+  .red {
+    color: red;
+    font-size: 40px;
+  }
+</style>
+
+<script>
+  let h = document.getElementById("h");
+  let b = document.getElementById("b");
+
+  b.addEventListener("click", function () {
+    h.classList.toggle("red");
+  });
+</script>

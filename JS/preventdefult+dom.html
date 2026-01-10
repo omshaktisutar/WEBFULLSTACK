@@ -1,0 +1,25 @@
+<form id="loginForm">
+  <input id="username" placeholder="Username">
+  <input id="password" type="password" placeholder="Password">
+  <button type="submit">Login</button>
+</form>
+
+<p id="msg"></p>
+
+<script>
+  let form = document.getElementById("loginForm");
+  let msg = document.getElementById("msg");
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    let user = document.getElementById("username").value;
+    let pass = document.getElementById("password").value;
+
+    if (user === "admin" && pass === "1234") {
+      msg.innerText = "Login Successful ✅";
+    } else {
+      msg.innerText = "Invalid Credentials ❌";
+    }
+  });
+</script>

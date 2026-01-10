@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .big {
+  color: red;
+  font-size: 40px;
+}
+
+  </style>
+</head>
+<body>
+  <h1 id="title">Hello World</h1>
+<button id="btn">Change Style</button>
+<script>
+  let h = document.getElementById("title");
+let b = document.getElementById("btn");
+
+b.addEventListener("click", function () {
+  h.classList.add("big");
+});
+
+</script>
+</body>
+</html>

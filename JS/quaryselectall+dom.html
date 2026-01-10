@@ -1,0 +1,13 @@
+<div class="card">Card 1</div>
+<div class="card">Card 2</div>
+<div class="card">Card 3</div>
+<script>
+  let cards = document.querySelectorAll(".card");
+
+for (let i = 0; i < cards.length; i++) {
+  cards[i].addEventListener("click", function () {
+    cards[i].style.background = "lightblue";
+  });
+}
+
+</script>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <p class="text">Para 1</p>
+<p class="text">Para 2</p>
+
+<script>
+  let paras = document.getElementsByClassName("text");
+  console.log(paras);
+</script>
+<h1 id="title">Hello</h1>
+
+<script>
+  let heading = document.getElementById("title");
+  console.log(heading);
+</script>
+<button id="btn">Click Me</button>
+<h2 id="msg"></h2>
+
+<script>
+  let btn = document.getElementById("btn");
+  let msg = document.getElementById("msg");
+
+  btn.addEventListener("click", function () {
+    msg.innerText = "Button Clicked 🎉";
+  });
+</script>
+<button id="theme">Change Theme</button>
+
+<script>
+  let themeBtn = document.getElementById("theme");
+
+  themeBtn.addEventListener("click", function () {
+    document.body.style.backgroundColor = "black";
+    document.body.style.color = "white";
+  });
+</script>
+<input type="text" id="nameInput">
+<button id="show">Show Name</button>
+<p id="output"></p>
+<hr>
+<script>
+  let input = document.getElementById("nameInput");
+  let output = document.getElementById("output");
+
+  document.getElementById("show").addEventListener("click", function () {
+    output.innerText = input.value;
+  });
+</script>
+
+</body>
+</html>

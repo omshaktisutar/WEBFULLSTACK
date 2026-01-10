@@ -1,0 +1,14 @@
+<h2 id="heading">Welcome</h2>
+<input id="name">
+<button id="btn">Click</button>
+
+<script>
+  let h = document.getElementById("heading");
+  let i = document.getElementById("name");
+  let b = document.getElementById("btn");
+
+  b.addEventListener("click", function () {
+    h.style.color = "green";
+    h.innerText = "Hello " + i.value;
+  });
+</script>
